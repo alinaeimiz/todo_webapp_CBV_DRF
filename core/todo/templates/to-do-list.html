@@ -28,7 +28,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="">logout</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">logout</a>
           </li>
           </li>
         </ul>
@@ -61,7 +61,7 @@
 
             <h4 class="text-center my-3 pb-3">To Do App</h4>
 
-            <form  class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2" action="" method="post">
+            <form  class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2" action="{% url 'todo:create' %}" method="post">
               {% csrf_token %}
               <div class="col-12">
                 <div class="form-outline">
@@ -95,15 +95,15 @@
               <th scope="row">{{forloop.counter}}</th>
               <td>{{post.task}}</td>
               
-              {% if post.complete %}
-              <td>completed</td>
-              {% else %}
+              {% if not post.complete %}
               <td>In progress</td>
+              {% else %}
+              <td>completed</td>
               {% endif %}
                 
               
               <td>
-                <a href=""> <button type="submit"  class="btn btn-danger">Delete</button></a>
+                <a href="{% url 'todo:delete' pk=post.id %}"> <button type="submit"  class="btn btn-danger">Delete</button></a>
                 <a href="{% url 'todo:complete' pk=post.id %}"><button type="submit" class="btn btn-success ms-1">Finished</button></a>
               </td>
             </tr>
