@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 class TodoSerializer(serializers.ModelSerializer):
     user = serializers.SlugRelatedField(slug_field='username',read_only=True)
+    
     class Meta():
         model = Todo
         fields = [ 'id','user','task', 'complete', 'created_date', 'updated_date']

@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from .seralizer import TodoSerializer
 from todo.models import Todo
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,IsAdminUser
 
 class TodoViewset(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
@@ -20,7 +20,7 @@ class TodoViewset(viewsets.ModelViewSet):
     
     
 class DetailViewset(viewsets.ModelViewSet):
-    permission_classes=[IsAuthenticated]
+    permission_classes=[IsAdminUser]
     serializer_class=TodoSerializer
     queryset = Todo.objects.all()
     
