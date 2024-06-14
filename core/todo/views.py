@@ -11,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here. 
 
 
-class TodoListView(LoginRequiredMixin,ListView):
+class TodoListView(ListView):
     template_name = "to-do-list.html"
     redirect_field_name = 'login'
     def get_queryset(self):
@@ -19,7 +19,7 @@ class TodoListView(LoginRequiredMixin,ListView):
         return object
 
 
-
+# 
 class CompleteView(LoginRequiredMixin,View):
     model = Todo
     success_url = reverse_lazy("todo:list")
